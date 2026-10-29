@@ -1,22 +1,129 @@
 <!doctype html>
-<html lang="hu">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tanulj könnyebben – Biológia és kémia</title>
+<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tanulj+ | Tudás, amivel többre jutsz</title>
 <style>
-:root{--ink:#18233b;--muted:#667085;--paper:#f7f8fc;--brand:#5b63d3;--mint:#e6f6ef;--line:#e6e8f0}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper)}header{display:flex;justify-content:space-between;align-items:center;padding:22px max(5vw,20px);background:white;border-bottom:1px solid var(--line)}.brand{font-weight:800;letter-spacing:-.04em;font-size:1.15rem}.brand span{color:var(--brand)}nav{display:flex;gap:22px;align-items:center}nav a{color:var(--muted);text-decoration:none;font-size:.92rem}.btn{display:inline-block;background:var(--brand);color:white;border:0;border-radius:12px;padding:12px 17px;text-decoration:none;font-weight:700;cursor:pointer}.btn.light{background:#eef0ff;color:var(--brand)}main{max-width:1120px;margin:auto;padding:48px 22px}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center;padding:35px 0 60px}.eyebrow{color:var(--brand);font-weight:800;text-transform:uppercase;font-size:.78rem;letter-spacing:.12em}.hero h1{font-size:clamp(2.5rem,5vw,4.3rem);line-height:1.02;letter-spacing:-.055em;margin:15px 0}.hero p{font-size:1.1rem;color:var(--muted);line-height:1.7;max-width:560px}.hero-art{background:linear-gradient(135deg,#e8eaff,#e3f7ee);border-radius:28px;padding:28px;min-height:300px;display:flex;align-items:center;justify-content:center}.orbit{width:230px;height:230px;border:2px solid #a9afea;border-radius:50%;display:grid;place-items:center;position:relative}.core{width:100px;height:100px;background:white;border-radius:28px;display:grid;place-items:center;font-size:2.8rem;box-shadow:0 15px 35px #5b63d326}.bubble{position:absolute;background:white;padding:12px 15px;border-radius:14px;font-weight:700;box-shadow:0 8px 25px #2221}.b1{top:12px;left:-30px}.b2{right:-28px;bottom:20px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.section-head h2{font-size:2rem;letter-spacing:-.04em;margin:0}.section-head p{color:var(--muted);margin:8px 0 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 25px #1a254008}.iconbox{height:54px;width:54px;border-radius:16px;background:var(--mint);display:grid;place-items:center;font-size:1.6rem}.card h3{margin:17px 0 8px}.card p{color:var(--muted);line-height:1.55;min-height:48px}.meta{display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-weight:800}.tag{font-size:.78rem;color:#4c559e;background:#eef0ff;border-radius:99px;padding:6px 10px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:50px 0}.feature{padding:18px;border-radius:16px;background:white;border:1px solid var(--line)}.feature strong{display:block;margin-bottom:7px}.feature span{font-size:.9rem;color:var(--muted);line-height:1.5}footer{padding:30px 5vw;background:#18233b;color:#dce1f2;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.note{font-size:.82rem;color:var(--muted);margin-top:20px}@media(max-width:760px){nav a:not(.btn){display:none}.hero{grid-template-columns:1fr;padding-top:20px}.cards,.features{grid-template-columns:1fr}.hero-art{min-height:240px}.section-head{display:block}}
-</style>
-</head>
-<body>
-<header><div class="brand">Tanulj<span>+</span></div><nav><a href="#anyagok">Tananyagok</a><a href="#hogyan">Hogyan működik?</a><a class="btn light" href="#belepes">Belépés</a><a class="btn" href="#belepes">Regisztráció</a></nav></header>
-<main>
-<section class="hero"><div><div class="eyebrow">Biológia • Kémia • Érettségi</div><h1>Értsd meg.<br>Gyakorold be.<br><span style="color:var(--brand)">Érd el a célod.</span></h1><p>Átlátható jegyzetek, videós magyarázatok és gyakorlófeladatok egy helyen — hogy magabiztosabban készülj a következő vizsgádra.</p><a class="btn" href="#anyagok">Tananyagok felfedezése</a><div class="note">Tanulói felület és fizetés a fejlesztés következő fázisában kapcsolható be.</div></div><div class="hero-art"><div class="orbit"><div class="core">🧬</div><div class="bubble b1">🧪 Kémia</div><div class="bubble b2">🌿 Biológia</div></div></div></section>
-<section id="anyagok"><div class="section-head"><div><h2>Válaszd ki, mire készülsz</h2><p>Tanulj a saját tempódban, a célodhoz illő anyagokkal.</p></div><span class="tag">Minta tananyagok</span></div><div class="cards">
-<article class="card"><div class="iconbox">🧬</div><h3>Biológia érettségi</h3><p>Rendszerezett témakörök, ábrák, fogalmak és vizsgafókuszú magyarázatok.</p><div class="meta"><span>Jegyzetek + gyakorlás</span><span>›</span></div></article>
-<article class="card"><div class="iconbox">⚗️</div><h3>Kémia érettségi</h3><p>Elmélet, számolási feladatok és lépésről lépésre követhető megoldások.</p><div class="meta"><span>Jegyzetek + feladatok</span><span>›</span></div></article>
-<article class="card"><div class="iconbox">🎓</div><h3>Komplex felkészítő</h3><p>Átfogó tananyagcsomag azoknak, akik teljes rendszert szeretnének a felkészüléshez.</p><div class="meta"><span>Kurzuscsomag</span><span>›</span></div></article>
-</div></section>
-<section id="hogyan" class="features"><div class="feature"><strong>📚 Egy helyen minden</strong><span>Jegyzetek, videók és gyakorlóanyagok egy átlátható tanulói könyvtárban.</span></div><div class="feature"><strong>🔐 Saját tanulói fiók</strong><span>A vásárolt anyagokhoz később bármikor visszatérhetsz.</span></div><div class="feature"><strong>💳 Rugalmas hozzáférés</strong><span>Egyszeri vásárlás vagy előfizetés — a készülő rendszerben.</span></div></section>
-<section id="belepes" style="text-align:center;background:white;border:1px solid var(--line);border-radius:24px;padding:32px"><h2>Indulj el a felkészülésben!</h2><p style="color:var(--muted)">A regisztrációs és fizetési funkciók még nincsenek bekötve. Ez a kezdő látványterv a platform felépítését mutatja.</p><a class="btn" href="mailto:hello@example.com?subject=Tananyag%20platform">Érdeklődöm</a></section>
-</main><footer><strong>Tanulj+</strong><span>Biológia és kémia — érthetően, lépésről lépésre.</span><span>© 2026</span></footer>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial;color:#25233e;background:#fbfaff}header{padding:18px 6%;display:flex;justify-content:space-between;align-items:center;background:white;border-bottom:1px solid #e9e7f5;position:sticky;top:0}.brand{font-size:25px;font-weight:850;color:#7164df}.brand span{color:#282641}nav{display:flex;gap:24px}a{color:inherit;text-decoration:none}button{border:0;border-radius:12px;padding:12px 17px;font-weight:700;cursor:pointer}.primary{background:#7164df;color:white}.outline{background:white;border:1px solid #e5e3f1;color:#282641}.wrap{max-width:1120px;margin:auto;padding:0 24px}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center;padding:70px 0}.tag{background:#f0edff;color:#6255ca;padding:8px 13px;border-radius:25px;font-size:12px;font-weight:800}h1{font-size:clamp(42px,6vw,68px);line-height:1.05;letter-spacing:-2px;margin:22px 0}h1 em{font-style:normal;color:#7164df}.lead{font-size:18px;line-height:1.7;color:#77758c}.buttons{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}.panel{padding:24px;border-radius:26px;background:linear-gradient(145deg,#e8e4ff,#f5f2ff,#e5f4ff)}.dash{background:white;border-radius:18px;padding:22px;box-shadow:0 15px 35px #332d6812}.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.tile{padding:16px;border:1px solid #ebe9f4;border-radius:14px}.tile b{display:block;margin:8px 0}.section{padding:40px 0 65px}.section h2{font-size:30px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid #e9e7f5;border-radius:20px;padding:18px}.cover{height:120px;border-radius:14px;display:grid;place-items:center;font-size:44px;background:#e2f6e9}.card:nth-child(2) .cover{background:#e8e3ff}.card:nth-child(3) .cover{background:#fff0d9}.muted{color:#77758c;font-size:13px;line-height:1.6}.price{font-weight:850;font-size:18px}.cardfoot{display:flex;align-items:center;justify-content:space-between;margin-top:18px}.banner{background:#282641;color:white;border-radius:22px;padding:30px;display:flex;justify-content:space-between;align-items:center;gap:20px}.banner p{color:#c8c6dd}footer{padding:25px 6%;border-top:1px solid #e9e7f5;color:#77758c;font-size:13px}.modal{display:none;position:fixed;inset:0;background:#19172c99;place-items:center;padding:20px}.modal.show{display:grid}.box{background:white;padding:26px;border-radius:20px;max-width:400px;width:100%}.box input{width:100%;padding:12px;border:1px solid #e5e3f1;border-radius:10px;margin:8px 0 14px}.box button{width:100%}@media(max-width:760px){nav{display:none}.hero{grid-template-columns:1fr;padding:42px 0}.cards{grid-template-columns:1fr}.banner{display:block}.banner button{margin-top:15px}}
+</style></head><body>
+<header><a class="brand" href="#">Tanulj<span>+</span></a><nav><a href="#anyagok">Tananyagok</a><a href="#kurzusok">Kurzusok</a><a href="#tagsag">Előfizetés</a></nav><div id="authActions"><button class="outline" onclick="modal('Belépés')">Belépés</button> <button class="primary" onclick="modal('Regisztráció')">Regisztráció</button></div></header>
+<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons"><button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">Tananyagok felfedezése →</button><button class="outline" onclick="modal('Regisztráció')">Fiók létrehozása</button></div><p class="muted">✓ Érthető jegyzetek　✓ Rugalmas tanulás　✓ Saját tempó</p></div>
+<div class="panel"><div class="dash"><b>Helló, Tanuló! 👋</b><p class="muted">Folytasd a tanulást, vagy fedezz fel egy új témát.</p><div class="tiles"><div class="tile">🧬<b>Biológia</b><span class="muted">Jegyzetek és kurzusok</span></div><div class="tile">⚗️<b>Kémia</b><span class="muted">Elmélet és gyakorlás</span></div></div><p class="muted" style="margin-top:20px">Tanulói felület · A megvásárolt anyagaid egy helyen</p></div></div></section>
+<section class="section" id="anyagok"><h2>Találd meg a következő témádat</h2><p class="muted">Tananyagok, amelyek segítenek megérteni — nem csak bemagolni.</p><div class="cards" id="kurzusok">
+<div class="card"><div class="cover">🧬</div><p class="muted">BIOLÓGIA · PDF JEGYZET</p><h3>Sejtbiológia érthetően</h3><p class="muted">Rendszerezett jegyzet az alapoktól a sejtszervecskék működéséig.</p><div class="cardfoot"><span class="price">1 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
+<div class="card"><div class="cover">⚗️</div><p class="muted">KÉMIA · TANANYAGCSOMAG</p><h3>Szerves kémia alapok</h3><p class="muted">Összefoglaló, példák és gyakorlófeladatok egy helyen.</p><div class="cardfoot"><span class="price">3 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
+<div class="card"><div class="cover">🎯</div><p class="muted">ÉRETTSÉGI · KOMPLETT CSOMAG</p><h3>Emelt biológia felkészítő</h3><p class="muted">Tematikus tananyagok és gyakorlás a magabiztos felkészüléshez.</p><div class="cardfoot"><span class="price">19 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div></div></section>
+<section class="section" id="tagsag"><div class="banner"><div><h2>Tanulj a saját ritmusodban!</h2><p>Egyszeri vásárlás vagy havi hozzáférés — te választasz.</p></div><button class="primary" onclick="modal('Regisztráció')">Érdekel az előfizetés →</button></div></section></main>
+<footer>Tanulj+ · Tudás, amivel többre jutsz. <span style="float:right">Adatvédelem · ÁSZF · Kapcsolat</span></footer>
+<div class="modal" id="modal"><div class="box">
+<button class="outline" style="float:right;width:auto" onclick="closeModal()">×</button>
+<h2 id="mt">Regisztráció</h2>
+<p class="muted" id="authHint">Hozd létre a tanulói fiókodat.</p>
+<form id="authForm">
+<label for="authEmail">E-mail-cím</label><input id="authEmail" name="email" type="email" placeholder="diak@email.com" autocomplete="email" required>
+<label for="authPassword">Jelszó</label><input id="authPassword" name="password" type="password" placeholder="Legalább 8 karakter" autocomplete="current-password" minlength="8" required>
+<button class="primary" id="authSubmit" type="submit">Regisztráció</button>
+</form>
+<p id="authMessage" class="muted" role="status" aria-live="polite"></p>
+<p class="muted" style="margin-bottom:0"><a href="#" id="authSwitch">Már van fiókom — belépek</a></p>
+</div></div>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'https://oaaqzlfufoysjilycovg.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_tfGd8NdUkASE4CIaCcVaDg_RfZNexJ7';
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const modalEl = document.getElementById('modal');
+const titleEl = document.getElementById('mt');
+const hintEl = document.getElementById('authHint');
+const formEl = document.getElementById('authForm');
+const emailEl = document.getElementById('authEmail');
+const passwordEl = document.getElementById('authPassword');
+const submitEl = document.getElementById('authSubmit');
+const messageEl = document.getElementById('authMessage');
+const switchEl = document.getElementById('authSwitch');
+const actionsEl = document.getElementById('authActions');
+let authMode = 'signup';
+
+window.modal = function(mode) {
+  authMode = mode === 'Belépés' ? 'signin' : 'signup';
+  updateAuthForm();
+  messageEl.textContent = '';
+  modalEl.classList.add('show');
+};
+window.closeModal = function() { modalEl.classList.remove('show'); };
+
+function updateAuthForm() {
+  const signingIn = authMode === 'signin';
+  titleEl.textContent = signingIn ? 'Belépés' : 'Regisztráció';
+  hintEl.textContent = signingIn ? 'Lépj be a tanulói fiókodba.' : 'Hozd létre a tanulói fiókodat.';
+  submitEl.textContent = signingIn ? 'Belépés' : 'Regisztráció';
+  passwordEl.autocomplete = signingIn ? 'current-password' : 'new-password';
+  switchEl.textContent = signingIn ? 'Még nincs fiókom — regisztrálok' : 'Már van fiókom — belépek';
+}
+
+switchEl.addEventListener('click', (event) => {
+  event.preventDefault();
+  authMode = authMode === 'signin' ? 'signup' : 'signin';
+  messageEl.textContent = '';
+  updateAuthForm();
+});
+
+formEl.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = emailEl.value.trim();
+  const password = passwordEl.value;
+  submitEl.disabled = true;
+  submitEl.textContent = 'Egy pillanat…';
+  messageEl.textContent = '';
+  try {
+    if (authMode === 'signup') {
+      const { data, error } = await supabase.auth.signUp({
+        email, password,
+        options: { emailRedirectTo: window.location.href.split('#')[0] }
+      });
+      if (error) throw error;
+      if (data.session) {
+        messageEl.textContent = 'Sikeres regisztráció és bejelentkezés!';
+        closeModal();
+      } else {
+        messageEl.textContent = 'Regisztráció elindítva! Nézd meg az e-mailjeidet, és erősítsd meg a címedet a belépéshez.';
+      }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      messageEl.textContent = 'Sikeres belépés!';
+      closeModal();
+    }
+  } catch (error) {
+    messageEl.textContent = error.message || 'Hiba történt. Kérlek, próbáld újra.';
+  } finally {
+    submitEl.disabled = false;
+    updateAuthForm();
+  }
+});
+
+function renderAuth(user) {
+  if (user) {
+    const firstName = user.email ? user.email.split('@')[0] : 'Tanuló';
+    actionsEl.innerHTML = `<span class="muted" style="margin-right:8px">Szia, ${escapeHtml(firstName)}!</span><button class="outline" id="logoutBtn">Kilépés</button>`;
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      const { error } = await supabase.auth.signOut();
+      if (error) alert(error.message);
+    });
+  } else {
+    actionsEl.innerHTML = '<button class="outline" onclick="modal(\'Belépés\')">Belépés</button> <button class="primary" onclick="modal(\'Regisztráció\')">Regisztráció</button>';
+  }
+}
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+supabase.auth.onAuthStateChange((_event, session) => renderAuth(session?.user ?? null));
+const { data: { session } } = await supabase.auth.getSession();
+renderAuth(session?.user ?? null);
+
+modalEl.addEventListener('click', event => {
+  if (event.target.id === 'modal') closeModal();
+});
+</script>
 </body></html>
