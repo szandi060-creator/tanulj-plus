@@ -1,2 +1,2 @@
-# tanulj-pluu
+# tanulj-plus
 Tanulj+ oktatási weboldal
