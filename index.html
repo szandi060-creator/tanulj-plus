@@ -358,8 +358,7 @@ async function createOrFindConversation(studentId) {
     if (ids.length) {
       const { data: chats, error: chatsError } = await supabase.from('tanulj_conversations')
         .select('id,title,created_by,updated_at').in('id', ids)
-        // A beszélgetést az aktuális tanuló saját tagsága alapján keressük.
-        // Ne szűrjünk created_by-ra: az oktató is létrehozhatta a chatet.
+        .eq('created_by', currentUser.id)
         .eq('title', 'Üzenet az oktatónak')
         .order('updated_at', { ascending: false });
       if (chatsError) throw chatsError;
@@ -428,31 +427,6 @@ messageComposeEl.addEventListener('submit', async e => {
   finally { sendButton.disabled = false; }
 });
 
-// Egyszeri inicializálás felhasználónként: az első betöltés és az auth-esemény
-// ugyanazt a folyamatot használja, nem indít két párhuzamos chat-előkészítést.
-let messagingInitUserId = undefined;
-let messagingInitPromise = null;
-
-function initializeMessagingOnce(user) {
-  const userId = user?.id ?? null;
-
-  // Ha a felhasználó megváltozott, az előző inicializálás ne legyen újrahasználva.
-  if (messagingInitUserId !== userId) {
-    messagingInitUserId = userId;
-    messagingInitPromise = null;
-  }
-
-  if (messagingInitPromise) return messagingInitPromise;
-
-  messagingInitPromise = initializeMessaging(user).catch(error => {
-    // Hiba esetén legyen lehetőség később újrapróbálni.
-    messagingInitPromise = null;
-    throw error;
-  });
-
-  return messagingInitPromise;
-}
-
 async function initializeMessaging(user) {
   messagingSection.style.display = user ? 'block' : 'none';
   if (!user) { activeConversationId = null; return; }
@@ -476,11 +450,7 @@ async function initializeMessaging(user) {
 supabase.auth.onAuthStateChange((_event, session) => {
   const user = session?.user ?? null;
   renderAuth(user);
-  setTimeout(() => {
-    initializeMessagingOnce(user).catch(err => {
-      console.error('Üzenetkezelés inicializálási hiba:', err);
-    });
-  }, 0);
+  setTimeout(() => { initializeMessaging(user); }, 0);
   // Run the database admin check outside the auth callback to avoid blocking auth state changes.
   setTimeout(() => { checkAdmin(user); }, 0);
 });
@@ -489,7 +459,7 @@ const { data: { session } } = await supabase.auth.getSession();
 const initialUser = session?.user ?? null;
 renderAuth(initialUser);
 await checkAdmin(initialUser);
-await initializeMessagingOnce(initialUser);
+await initializeMessaging(initialUser);
 
 modalEl.addEventListener('click', event => {
   if (event.target.id === 'modal') closeModal();
