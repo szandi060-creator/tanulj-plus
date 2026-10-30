@@ -349,13 +349,32 @@ async function createOrFindConversation(studentId) {
   const { data: memberships, error } = await supabase.from('tanulj_conversation_members')
     .select('conversation_id').eq('user_id', studentId);
   if (error) throw error;
-  for (const item of memberships || []) {
-    const { data: otherMembers, error: otherError } = await supabase.from('tanulj_conversation_members')
-      .select('user_id').eq('conversation_id', item.conversation_id);
-    if (otherError) throw otherError;
-    const ids = (otherMembers || []).map(m => m.user_id);
-    if (ids.includes(ADMIN_USER_ID) && ids.includes(studentId) && ids.length === 2) return item.conversation_id;
+
+  // Student view: RLS intentionally lets a student see only their own membership row.
+  // So identify their already-created instructor chat by its own conversation record,
+  // rather than querying the other participant rows (which are hidden to the student).
+  if (!isAdminUser()) {
+    const ids = [...new Set((memberships || []).map(m => m.conversation_id))];
+    if (ids.length) {
+      const { data: chats, error: chatsError } = await supabase.from('tanulj_conversations')
+        .select('id,title,created_by,updated_at').in('id', ids)
+        .eq('created_by', currentUser.id)
+        .eq('title', 'Üzenet az oktatónak')
+        .order('updated_at', { ascending: false });
+      if (chatsError) throw chatsError;
+      if (chats?.length) return chats[0].id;
+    }
+  } else {
+    // Admin can inspect participants and find the existing one-to-one student thread.
+    for (const item of memberships || []) {
+      const { data: otherMembers, error: otherError } = await supabase.from('tanulj_conversation_members')
+        .select('user_id').eq('conversation_id', item.conversation_id);
+      if (otherError) throw otherError;
+      const ids = (otherMembers || []).map(m => m.user_id);
+      if (ids.includes(ADMIN_USER_ID) && ids.includes(studentId) && ids.length === 2) return item.conversation_id;
+    }
   }
+
   const title = isAdminUser() ? (studentSelectEl.selectedOptions[0]?.textContent || 'Tanuló') : 'Üzenet az oktatónak';
   const { data: conversation, error: createError } = await supabase.from('tanulj_conversations')
     .insert({ title, created_by: currentUser.id }).select('id').single();
