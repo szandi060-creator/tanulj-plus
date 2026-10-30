@@ -187,9 +187,17 @@ function escapeHtml(value) {
   return value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 }
 
-supabase.auth.onAuthStateChange((_event, session) => renderAuth(session?.user ?? null));
+supabase.auth.onAuthStateChange((_event, session) => {
+  const user = session?.user ?? null;
+  renderAuth(user);
+  // Run the database admin check outside the auth callback to avoid blocking auth state changes.
+  setTimeout(() => { checkAdmin(user); }, 0);
+});
+
 const { data: { session } } = await supabase.auth.getSession();
-renderAuth(session?.user ?? null);
+const initialUser = session?.user ?? null;
+renderAuth(initialUser);
+await checkAdmin(initialUser);
 
 modalEl.addEventListener('click', event => {
   if (event.target.id === 'modal') closeModal();
