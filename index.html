@@ -358,7 +358,8 @@ async function createOrFindConversation(studentId) {
     if (ids.length) {
       const { data: chats, error: chatsError } = await supabase.from('tanulj_conversations')
         .select('id,title,created_by,updated_at').in('id', ids)
-        .eq('created_by', currentUser.id)
+        // A beszélgetést az aktuális tanuló saját tagsága alapján keressük.
+        // Ne szűrjünk created_by-ra: az oktató is létrehozhatta a chatet.
         .eq('title', 'Üzenet az oktatónak')
         .order('updated_at', { ascending: false });
       if (chatsError) throw chatsError;
