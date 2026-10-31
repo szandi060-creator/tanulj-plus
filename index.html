@@ -579,7 +579,8 @@ const { data: { session } } = await supabase.auth.getSession();
 const initialUser = session?.user ?? null;
 renderAuth(initialUser);
 await checkAdmin(initialUser);
-await initializeMessaging(initialUser);\nawait initializeAnnouncements(initialUser);
+await initializeMessaging(initialUser);
+await initializeAnnouncements(initialUser);
 
 modalEl.addEventListener('click', event => {
   if (event.target.id === 'modal') closeModal();
