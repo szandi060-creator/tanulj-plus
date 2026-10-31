@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tanulj+ | Tudás, amivel többre jutsz</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial;color:#25233e;background:#fbfaff}header{padding:18px 6%;display:flex;justify-content:space-between;align-items:center;background:white;border-bottom:1px solid #e9e7f5;position:sticky;top:0}.brand{font-size:25px;font-weight:850;color:#7164df}.brand span{color:#282641}nav{display:flex;gap:24px}a{color:inherit;text-decoration:none}button{border:0;border-radius:12px;padding:12px 17px;font-weight:700;cursor:pointer}.primary{background:#7164df;color:white}.outline{background:white;border:1px solid #e5e3f1;color:#282641}.wrap{max-width:1120px;margin:auto;padding:0 24px}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center;padding:70px 0}.tag{background:#f0edff;color:#6255ca;padding:8px 13px;border-radius:25px;font-size:12px;font-weight:800}h1{font-size:clamp(42px,6vw,68px);line-height:1.05;letter-spacing:-2px;margin:22px 0}h1 em{font-style:normal;color:#7164df}.lead{font-size:18px;line-height:1.7;color:#77758c}.buttons{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}.panel{padding:24px;border-radius:26px;background:linear-gradient(145deg,#e8e4ff,#f5f2ff,#e5f4ff)}.dash{background:white;border-radius:18px;padding:22px;box-shadow:0 15px 35px #332d6812}.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.tile{padding:16px;border:1px solid #ebe9f4;border-radius:14px}.tile b{display:block;margin:8px 0}.section{padding:40px 0 65px}.section h2{font-size:30px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid #e9e7f5;border-radius:20px;padding:18px}.cover{height:120px;border-radius:14px;display:grid;place-items:center;font-size:44px;background:#e2f6e9}.card:nth-child(2) .cover{background:#e8e3ff}.card:nth-child(3) .cover{background:#fff0d9}.muted{color:#77758c;font-size:13px;line-height:1.6}.price{font-weight:850;font-size:18px}.cardfoot{display:flex;align-items:center;justify-content:space-between;margin-top:18px}.banner{background:#282641;color:white;border-radius:22px;padding:30px;display:flex;justify-content:space-between;align-items:center;gap:20px}.banner p{color:#c8c6dd}footer{padding:25px 6%;border-top:1px solid #e9e7f5;color:#77758c;font-size:13px}.modal{display:none;position:fixed;inset:0;background:#19172c99;place-items:center;padding:20px}.modal.show{display:grid}.box{background:white;padding:26px;border-radius:20px;max-width:400px;width:100%}.box input{width:100%;padding:12px;border:1px solid #e5e3f1;border-radius:10px;margin:8px 0 14px}.box button{width:100%}.profile-modal{display:none;position:fixed;inset:0;background:#19172c99;place-items:center;padding:20px;z-index:20}.profile-modal.show{display:grid}.profile-card{background:white;padding:26px;border-radius:20px;max-width:420px;width:100%}.profile-row{padding:12px 0;border-bottom:1px solid #eeeaf8}.profile-row:last-of-type{border-bottom:0}.profile-label{font-size:12px;color:#77758c;margin-bottom:4px}.profile-value{font-weight:650;overflow-wrap:anywhere}.profile-actions{display:flex;gap:10px;margin-top:18px}.profile-actions button{width:auto;flex:1}@media(max-width:760px){nav{display:none}.hero{grid-template-columns:1fr;padding:42px 0}.cards{grid-template-columns:1fr}.banner{display:block}.banner button{margin-top:15px}}
+
+.admin-section{display:none;background:#fff;border:1px solid #e9e7f5;border-radius:22px;padding:26px;margin:20px auto 50px}.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.admin-form label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.admin-form input,.admin-form select,.admin-form textarea{width:100%;padding:12px;border:1px solid #e5e3f1;border-radius:10px;font:inherit}.admin-form .wide{grid-column:1/-1}.admin-material{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #eeeaf8}.admin-status{font-size:13px;color:#6255ca;margin-top:12px}@media(max-width:760px){.admin-form{grid-template-columns:1fr}}
+
+.messaging{display:none;background:#fff;border:1px solid #e9e7f5;border-radius:22px;padding:24px;margin:20px auto 35px}
+.messaging h2{margin-top:0}.message-layout{display:grid;grid-template-columns:260px 1fr;gap:18px;min-height:390px}
+.message-sidebar,.message-main{border:1px solid #eeeaf8;border-radius:15px;padding:14px;min-width:0}
+.message-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.message-thread{padding:10px;border:1px solid #eeeaf8;border-radius:10px;background:#fff;text-align:left;width:100%;color:#282641}
+.message-thread.active{background:#f0edff;border-color:#c9c1ff}
+.message-main{display:flex;flex-direction:column}.message-stream{flex:1;min-height:230px;max-height:390px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:5px}
+.message-bubble{max-width:82%;padding:11px 13px;border-radius:14px;background:#f1effa;overflow-wrap:anywhere}
+.message-bubble.mine{align-self:flex-end;background:#7164df;color:white}
+.message-bubble small{display:block;opacity:.72;font-size:11px;margin-top:5px}
+.message-compose{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.message-compose textarea{flex:1;min-width:180px;resize:vertical;border:1px solid #e5e3f1;border-radius:10px;padding:10px;font:inherit}
+.message-compose input[type=file]{max-width:100%}.message-note{font-size:13px;color:#77758c;margin:8px 0}
+.message-contact{display:flex;gap:8px;margin:10px 0}.message-contact select{flex:1;min-width:0;padding:10px;border:1px solid #e5e3f1;border-radius:10px}
+@media(max-width:760px){.message-layout{grid-template-columns:1fr}.message-sidebar{max-height:220px;overflow:auto}.message-stream{max-height:300px}}
+</style></head><body>
+<header><a class="brand" href="#">Tanulj<span>+</span></a><nav><a href="#anyagok">Tananyagok</a><a href="#kurzusok">Kurzusok</a><a href="#tagsag">Előfizetés</a></nav><div id="authActions"><button class="outline" onclick="modal('Belépés')">Belépés</button> <button class="primary" onclick="modal('Regisztráció')">Regisztráció</button></div></header>
+<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons"><button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">Tananyagok felfedezése →</button><button class="outline" onclick="modal('Regisztráció')">Fiók létrehozása</button></div><p class="muted">✓ Érthető jegyzetek　✓ Rugalmas tanulás　✓ Saját tempó</p></div>
+<div class="panel"><div class="dash"><b>Helló, Tanuló! 👋</b><p class="muted">Folytasd a tanulást, vagy fedezz fel egy új témát.</p><div class="tiles"><div class="tile">🧬<b>Biológia</b><span class="muted">Jegyzetek és kurzusok</span></div><div class="tile">⚗️<b>Kémia</b><span class="muted">Elmélet és gyakorlás</span></div></div><p class="muted" style="margin-top:20px">Tanulói felület · A megvásárolt anyagaid egy helyen</p></div></div></section>
+<section class="section" id="anyagok"><h2>Találd meg a következő témádat</h2><p class="muted">Tananyagok, amelyek segítenek megérteni — nem csak bemagolni.</p><div class="cards" id="kurzusok">
+<div class="card"><div class="cover">🧬</div><p class="muted">BIOLÓGIA · PDF JEGYZET</p><h3>Sejtbiológia érthetően</h3><p class="muted">Rendszerezett jegyzet az alapoktól a sejtszervecskék működéséig.</p><div class="cardfoot"><span class="price">1 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
+<div class="card"><div class="cover">⚗️</div><p class="muted">KÉMIA · TANANYAGCSOMAG</p><h3>Szerves kémia alapok</h3><p class="muted">Összefoglaló, példák és gyakorlófeladatok egy helyen.</p><div class="cardfoot"><span class="price">3 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
+<div class="card"><div class="cover">🎯</div><p class="muted">ÉRETTSÉGI · KOMPLETT CSOMAG</p><h3>Emelt biológia felkészítő</h3><p class="muted">Tematikus tananyagok és gyakorlás a magabiztos felkészüléshez.</p><div class="cardfoot"><span class="price">19 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div></div></section>
+<section class="section" id="tagsag"><div class="banner"><div><h2>Tanulj a saját ritmusodban!</h2><p>Egyszeri vásárlás vagy havi hozzáférés — te választasz.</p></div><button class="primary" onclick="modal('Regisztráció')">Érdekel az előfizetés →</button></div></section></main>
+
+<section class="messaging wrap" id="messagingSection">
+  <h2>💬 Üzenetek</h2>
+  <p class="muted" id="messagingIntro">Privát üzenetváltás az oktatóval.</p>
+  <div class="message-layout">
+    <aside class="message-sidebar">
+      <div id="adminContactTools" style="display:none">
+        <label for="messageStudentSelect"><strong>Üzenet küldése diáknak</strong></label>
+        <div class="message-contact"><select id="messageStudentSelect"><option value="">Diák kiválasztása…</option></select><button class="primary" id="startStudentChat">Új</button></div>
+      </div>
+      <strong>Beszélgetések</strong>
+      <div class="message-list" id="messageThreads"><p class="muted">Betöltés…</p></div>
+    </aside>
+    <section class="message-main">
+      <div id="messageActiveTitle"><strong>Válassz beszélgetést</strong></div>
+      <div class="message-stream" id="messageStream"><p class="muted">Itt jelennek meg az üzenetek.</p></div>
+      <form class="message-compose" id="messageCompose" style="display:none">
+        <textarea id="messageText" rows="2" maxlength="5000" placeholder="Írd meg az üzeneted…"></textarea>
+        <input id="messageAttachment" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf,.doc,.docx,.xls,.xlsx,image/jpeg,image/png,image/webp,application/pdf">
+        <button class="primary" type="submit" id="messageSend">Küldés</button>
+      </form>
+      <p class="message-note" id="messageStatus" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+</section>
+\n<section class="admin-section" id="adminSection"><h2>Tanulj+ adminfelület</h2>
+<div class="calendar-admin" style="padding:16px;margin:16px 0;border:1px solid #e9e7f5;border-radius:16px;background:#fbfaff">
+  <h3 style="margin:0 0 8px">Google Naptár</h3>
+  <p class="muted" style="margin:0 0 12px">Csatlakoztasd az oktatói Google Naptáradat az időpontkezeléshez.</p>
+  <button class="primary" type="button" id="connectGoogleCalendar">Google Naptár csatlakoztatása</button>
+  <p id="calendarConnectStatus" class="admin-status" role="status" aria-live="polite"></p>
+</div>
+<p class="muted">PDF-tananyagok feltöltése és kezelése. Csak adminfiókkal érhető el.</p>
+<form id="materialForm" class="admin-form">
+<div><label for="materialTitle">Tananyag címe *</label><input id="materialTitle" required maxlength="180" placeholder="Pl. Sejtbiológia – összefoglaló"></div>
+<div><label for="materialSubject">Tantárgy *</label><select id="materialSubject" required><option value="biologia">Biológia</option><option value="kemia">Kémia</option></select></div>
+<div><label for="materialTopic">Témakör *</label><input id="materialTopic" required maxlength="160" placeholder="Pl. Sejtek felépítése"></div>
+<div><label for="materialFile">PDF-fájl * (max. 25 MB)</label><input id="materialFile" type="file" accept="application/pdf,.pdf" required></div>
+<div class="wide"><label for="materialDescription">Rövid leírás</label><textarea id="materialDescription" rows="3" maxlength="1200" placeholder="Mit tartalmaz a tananyag?"></textarea></div>
+<div class="wide"><button class="primary" id="materialSubmit" type="submit">PDF feltöltése</button></div></form>
+<p id="adminStatus" class="admin-status" role="status" aria-live="polite"></p><h3>Feltöltött tananyagok</h3><div id="adminMaterials"><p class="muted">Betöltés…</p></div></section>
+<footer>Tanulj+ · Tudás, amivel többre jutsz. <span style="float:right">Adatvédelem · ÁSZF · Kapcsolat</span></footer>
+<div class="modal" id="modal"><div class="box">
+<button class="outline" style="float:right;width:auto" onclick="closeModal()">×</button>
+<h2 id="mt">Regisztráció</h2>
+<p class="muted" id="authHint">Hozd létre a tanulói fiókodat.</p>
+<form id="authForm">
+<div id="nameField"><label for="authName">Név</label><input id="authName" name="name" type="text" placeholder="Pl. Anna" autocomplete="name"></div>
+<label for="authEmail">E-mail-cím</label><input id="authEmail" name="email" type="email" placeholder="diak@email.com" autocomplete="email" required>
+<label for="authPassword">Jelszó</label><input id="authPassword" name="password" type="password" placeholder="Legalább 8 karakter" autocomplete="current-password" minlength="8" required>
+<button class="primary" id="authSubmit" type="submit">Regisztráció</button>
+</form>
+<p id="authMessage" class="muted" role="status" aria-live="polite"></p>
+<p class="muted" style="margin-bottom:0"><a href="#" id="authSwitch">Már van fiókom — belépek</a></p>
+</div></div>
+<div class="profile-modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle"><div class="profile-card">
+<button class="outline" style="float:right;width:auto" onclick="closeProfile()">×</button>
+<h2 id="profileTitle">Tanulói profil</h2><p class="muted">A fiókod adatai</p>
+<div class="profile-row"><div class="profile-label">Név</div><div class="profile-value" id="profileName">—</div></div>
+<div class="profile-row"><div class="profile-label">E-mail-cím</div><div class="profile-value" id="profileEmail">—</div></div>
+<div class="profile-actions"><button class="outline" onclick="closeProfile()">Bezárás</button><button class="primary" id="profileLogout">Kilépés</button></div>
+<p class="muted" id="profileMessage" role="status"></p></div></div>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'https://oaaqzlfufoysjilycovg.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_tfGd8NdUkASE4CIaCcVaDg_RfZNexJ7';
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const modalEl = document.getElementById('modal');
+const titleEl = document.getElementById('mt');
+const hintEl = document.getElementById('authHint');
+const formEl = document.getElementById('authForm');
+const emailEl = document.getElementById('authEmail');
+const passwordEl = document.getElementById('authPassword');
+const submitEl = document.getElementById('authSubmit');
+const messageEl = document.getElementById('authMessage');
+const switchEl = document.getElementById('authSwitch');
+const actionsEl = document.getElementById('authActions');
+const adminSection = document.getElementById('adminSection');
+const materialForm = document.getElementById('materialForm');
+const adminStatus = document.getElementById('adminStatus');
+const adminMaterials = document.getElementById('adminMaterials');
+const ADMIN_BUCKET = 'tanulj-materials';
+const nameEl = document.getElementById('authName');
+const nameFieldEl = document.getElementById('nameField');
+const profileModalEl = document.getElementById('profileModal');
+let currentUser = null;
+let authMode = 'signup';
+
+window.modal = function(mode) {
+  authMode = mode === 'Belépés' ? 'signin' : 'signup';
+  updateAuthForm();
+  messageEl.textContent = '';
+  modalEl.classList.add('show');
+};
+window.closeModal = function() { modalEl.classList.remove('show'); };
+window.openProfile = function() { if (!currentUser) return; const displayName = currentUser.user_metadata?.display_name || currentUser.email?.split('@')[0] || 'Tanuló'; document.getElementById('profileName').textContent = displayName; document.getElementById('profileEmail').textContent = currentUser.email || '—'; document.getElementById('profileMessage').textContent = ''; profileModalEl.classList.add('show'); };
+window.closeProfile = function() { profileModalEl.classList.remove('show'); };
+
+function updateAuthForm() {
+  const signingIn = authMode === 'signin';
+  titleEl.textContent = signingIn ? 'Belépés' : 'Regisztráció';
+  hintEl.textContent = signingIn ? 'Lépj be a tanulói fiókodba.' : 'Hozd létre a tanulói fiókodat.';
+  submitEl.textContent = signingIn ? 'Belépés' : 'Regisztráció';
+  passwordEl.autocomplete = signingIn ? 'current-password' : 'new-password';
+  nameFieldEl.style.display = signingIn ? 'none' : 'block';
+  nameEl.required = !signingIn;
+  switchEl.textContent = signingIn ? 'Még nincs fiókom — regisztrálok' : 'Már van fiókom — belépek';
+}
+
+switchEl.addEventListener('click', (event) => {
+  event.preventDefault();
+  authMode = authMode === 'signin' ? 'signup' : 'signin';
+  messageEl.textContent = '';
+  updateAuthForm();
+});
+
+formEl.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = emailEl.value.trim();
+  const displayName = nameEl.value.trim();
+  const password = passwordEl.value;
+  submitEl.disabled = true;
+  submitEl.textContent = 'Egy pillanat…';
+  messageEl.textContent = '';
+  try {
+    if (authMode === 'signup') {
+      const { data, error } = await supabase.auth.signUp({
+        email, password,
+        options: { emailRedirectTo: window.location.href.split('#')[0], data: { display_name: displayName } }
+      });
+      if (error) throw error;
+      if (data.session) {
+        messageEl.textContent = 'Sikeres regisztráció és bejelentkezés!';
+        closeModal();
+      } else {
+        messageEl.textContent = 'Regisztráció elindítva! Nézd meg az e-mailjeidet, és erősítsd meg a címedet a belépéshez.';
+      }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      messageEl.textContent = 'Sikeres belépés!';
+      closeModal();
+    }
+  } catch (error) {
+    messageEl.textContent = error.message || 'Hiba történt. Kérlek, próbáld újra.';
+  } finally {
+    submitEl.disabled = false;
+    updateAuthForm();
+  }
+});
+
+
+// Google Calendar OAuth connection (admin only)
+const calendarConnectButton = document.getElementById('connectGoogleCalendar');
+const calendarConnectStatus = document.getElementById('calendarConnectStatus');
+
+calendarConnectButton?.addEventListener('click', async () => {
+  if (!currentUser) {
+    calendarConnectStatus.textContent = 'Először jelentkezz be adminfiókkal.';
+    return;
+  }
+  calendarConnectButton.disabled = true;
+  calendarConnectStatus.textContent = 'Kapcsolódás a Google Naptárhoz…';
+  try {
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!session?.access_token) throw new Error('A bejelentkezési munkamenet lejárt. Jelentkezz be újra.');
+
+    const { data, error } = await supabase.functions.invoke('google-calendar-connect', {
+      body: {},
+      headers: { Authorization: `Bearer ${session.access_token}` }
+    });
+    if (error) throw error;
+    if (!data?.url) throw new Error(data?.message || 'Nem érkezett Google-engedélyezési link.');
+    window.location.assign(data.url);
+  } catch (err) {
+    calendarConnectStatus.textContent = 'Nem sikerült elindítani a csatlakozást: ' + (err.message || 'Ismeretlen hiba');
+    calendarConnectButton.disabled = false;
+  }
+});
+
+async function checkAdmin(user) {
+  adminSection.style.display = 'none';
+  if (!user) return;
+  const { data, error } = await supabase.from('tanulj_admins').select('user_id').eq('user_id', user.id).maybeSingle();
+  if (error) { console.error('Admin ellenőrzés:', error.message); return; }
+  if (data) { adminSection.style.display = 'block'; await loadAdminMaterials(); }
+}
+async function loadAdminMaterials() {
+  const { data, error } = await supabase.from('tanulj_materials').select('id,title,subject,topic,file_name,storage_path').order('created_at',{ascending:false});
+  if (error) { adminMaterials.textContent = 'Betöltési hiba: '+error.message; return; }
+  if (!data?.length) { adminMaterials.innerHTML='<p class="muted">Még nincs feltöltött tananyag.</p>'; return; }
+  adminMaterials.innerHTML=data.map(m=>`<div class="admin-material"><div><strong>${escapeHtml(m.title)}</strong><div class="muted">${m.subject==='biologia'?'Biológia':'Kémia'} · ${escapeHtml(m.topic)} · ${escapeHtml(m.file_name)}</div></div><button class="outline" data-id="${m.id}" data-path="${escapeHtml(m.storage_path)}">Törlés</button></div>`).join('');
+  adminMaterials.querySelectorAll('button[data-id]').forEach(b=>b.addEventListener('click',async()=>{
+    if(!confirm('Biztosan törlöd a tananyagot és a PDF-et?'))return;
+    adminStatus.textContent='Törlés…';
+    const {error:se}=await supabase.storage.from(ADMIN_BUCKET).remove([b.dataset.path]);
+    if(se){adminStatus.textContent='PDF törlési hiba: '+se.message;return;}
+    const {error:de}=await supabase.from('tanulj_materials').delete().eq('id',b.dataset.id);
+    if(de){adminStatus.textContent='Adatbázis törlési hiba: '+de.message;return;}
+    adminStatus.textContent='Tananyag törölve.'; await loadAdminMaterials();
+  }));
+}
+materialForm.addEventListener('submit',async e=>{
+  e.preventDefault(); if(!currentUser){adminStatus.textContent='Jelentkezz be a feltöltéshez.';return;}
+  const title=document.getElementById('materialTitle').value.trim(), subject=document.getElementById('materialSubject').value, topic=document.getElementById('materialTopic').value.trim(), description=document.getElementById('materialDescription').value.trim(), file=document.getElementById('materialFile').files[0];
+  if(!file||file.type!=='application/pdf'||!file.name.toLowerCase().endsWith('.pdf')){adminStatus.textContent='Kérlek, PDF-fájlt válassz.';return;}
+  if(file.size>25*1024*1024){adminStatus.textContent='A fájl mérete legfeljebb 25 MB lehet.';return;}
+  const btn=document.getElementById('materialSubmit');btn.disabled=true;btn.textContent='Feltöltés…';adminStatus.textContent='';
+  const clean=file.name.normalize('NFKD').replace(/[^a-zA-Z0-9._-]+/g,'-')||'tananyag.pdf', path=currentUser.id+'/'+crypto.randomUUID()+'-'+clean;
+  try{
+    const {error:up}=await supabase.storage.from(ADMIN_BUCKET).upload(path,file,{contentType:'application/pdf',upsert:false});if(up)throw up;
+    const {error:ins}=await supabase.from('tanulj_materials').insert({title,subject,topic,description,storage_path:path,file_name:file.name,created_by:currentUser.id});
+    if(ins){await supabase.storage.from(ADMIN_BUCKET).remove([path]);throw ins;}
+    materialForm.reset();adminStatus.textContent='A tananyag sikeresen feltöltve!';await loadAdminMaterials();
+  }catch(err){adminStatus.textContent='Feltöltési hiba: '+(err.message||'Ismeretlen hiba');}
+  finally{btn.disabled=false;btn.textContent='PDF feltöltése';}
+});
+
+function renderAuth(user) {
+  currentUser = user;
+  if (user) {
+    const firstName = user.user_metadata?.display_name || (user.email ? user.email.split('@')[0] : 'Tanuló');
+    actionsEl.innerHTML = `<button class="outline" onclick="openProfile()">Szia, ${escapeHtml(firstName)} · Profil</button>`;
+  } else {
+    actionsEl.innerHTML = '<button class="outline" onclick="modal(\'Belépés\')">Belépés</button> <button class="primary" onclick="modal(\'Regisztráció\')">Regisztráció</button>';
+  }
+}
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+
+// ---------------- Tanulj+ privát üzenetek (diák ↔ admin) ----------------
+const ADMIN_USER_ID = 'bd9046c4-65f6-402e-a339-b92f58ba8c00';
+const MESSAGE_BUCKET = 'tanulj-message-files';
+const messagingSection = document.getElementById('messagingSection');
+const messageThreadsEl = document.getElementById('messageThreads');
+const messageStreamEl = document.getElementById('messageStream');
+const messageComposeEl = document.getElementById('messageCompose');
+const messageTextEl = document.getElementById('messageText');
+const messageFileEl = document.getElementById('messageAttachment');
+const messageStatusEl = document.getElementById('messageStatus');
+const messageTitleEl = document.getElementById('messageActiveTitle');
+const adminContactTools = document.getElementById('adminContactTools');
+const studentSelectEl = document.getElementById('messageStudentSelect');
+let activeConversationId = null;
+let activeConversationTitle = '';
+let messageConversationIds = [];
+
+function safeText(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function isAdminUser() { return currentUser?.id === ADMIN_USER_ID; }
+
+async function ensureMessageProfile(user) {
+  if (!user) return;
+  const displayName = user.user_metadata?.display_name || user.email?.split('@')[0] || 'Tanuló';
+  const { error } = await supabase.from('tanulj_message_profiles').upsert(
+    { user_id: user.id, display_name: displayName, email: user.email || '' },
+    { onConflict: 'user_id' }
+  );
+  if (error) console.warn('Üzenetprofil frissítése:', error.message);
+}
+
+async function loadMessageProfiles() {
+  const { data, error } = await supabase.from('tanulj_message_profiles')
+    .select('user_id,display_name,email').neq('user_id', ADMIN_USER_ID).order('display_name');
+  if (error) {
+    messageStatusEl.textContent = 'A diáklista betöltése nem sikerült: ' + error.message;
+    return;
+  }
+  studentSelectEl.innerHTML = '<option value="">Diák kiválasztása…</option>' +
+    (data || []).map(p => `<option value="${safeText(p.user_id)}">${safeText(p.display_name)}${p.email ? ' · ' + safeText(p.email) : ''}</option>`).join('');
+}
+
+async function getMyConversations() {
+  if (!currentUser) return [];
+  const { data: memberships, error: memberError } = await supabase.from('tanulj_conversation_members')
+    .select('conversation_id').eq('user_id', currentUser.id);
+  if (memberError) throw memberError;
+  const ids = [...new Set((memberships || []).map(m => m.conversation_id))];
+  if (!ids.length) return [];
+  const { data, error } = await supabase.from('tanulj_conversations')
+    .select('id,title,created_by,updated_at').in('id', ids).order('updated_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
+}
+
+async function loadMessageThreads() {
+  messageThreadsEl.innerHTML = '<p class="muted">Betöltés…</p>';
+  try {
+    const conversations = await getMyConversations();
+    messageConversationIds = conversations.map(c => c.id);
+    if (!conversations.length) {
+      messageThreadsEl.innerHTML = '<p class="muted">Még nincs beszélgetés.</p>';
+      return;
+    }
+    const profileIds = conversations.map(c => c.created_by).filter(id => id !== currentUser.id);
+    let profileMap = {};
+    if (profileIds.length) {
+      const { data } = await supabase.from('tanulj_message_profiles').select('user_id,display_name,email').in('user_id', [...new Set(profileIds)]);
+      (data || []).forEach(p => profileMap[p.user_id] = p.display_name || p.email || 'Tanuló');
+    }
+    messageThreadsEl.innerHTML = conversations.map(c => {
+      const label = c.title || (c.created_by === ADMIN_USER_ID ? 'Üzenet az oktatónak' : (profileMap[c.created_by] || 'Beszélgetés'));
+      return `<button class="message-thread ${c.id === activeConversationId ? 'active' : ''}" data-conversation="${safeText(c.id)}">${safeText(label)}</button>`;
+    }).join('');
+    messageThreadsEl.querySelectorAll('[data-conversation]').forEach(btn => btn.addEventListener('click', () => openMessageConversation(btn.dataset.conversation, btn.textContent)));
+  } catch (err) {
+    messageThreadsEl.innerHTML = `<p class="muted">Hiba: ${safeText(err.message)}</p>`;
+  }
+}
+
+async function openMessageConversation(conversationId, title) {
+  activeConversationId = conversationId;
+  activeConversationTitle = title || 'Beszélgetés';
+  messageTitleEl.innerHTML = `<strong>${safeText(activeConversationTitle)}</strong>`;
+  messageComposeEl.style.display = 'flex';
+  messageStatusEl.textContent = '';
+  await loadMessageThreads();
+  await loadConversationMessages();
+}
+
+async function loadConversationMessages() {
+  if (!activeConversationId) return;
+  const { data, error } = await supabase.from('tanulj_messages')
+    .select('id,sender_id,content,attachment_path,attachment_name,created_at')
+    .eq('conversation_id', activeConversationId).order('created_at', { ascending: true });
+  if (error) { messageStatusEl.textContent = 'Üzenetek betöltése: ' + error.message; return; }
+  if (!data?.length) {
+    messageStreamEl.innerHTML = '<p class="muted">Még nincs üzenet. Írj egyet lent!</p>';
+    return;
+  }
+  messageStreamEl.innerHTML = data.map(m => {
+    const mine = m.sender_id === currentUser.id;
+    const attachment = m.attachment_path ? `<div><a href="#" data-file="${safeText(m.attachment_path)}" data-name="${safeText(m.attachment_name || 'csatolmány')}">📎 ${safeText(m.attachment_name || 'Csatolmány')}</a></div>` : '';
+    const time = new Date(m.created_at).toLocaleString('hu-HU');
+    return `<div class="message-bubble ${mine ? 'mine' : ''}">${safeText(m.content || '')}${attachment}<small>${time}</small></div>`;
+  }).join('');
+  messageStreamEl.querySelectorAll('[data-file]').forEach(a => a.addEventListener('click', async e => {
+    e.preventDefault();
+    const { data: signed, error: signError } = await supabase.storage.from(MESSAGE_BUCKET).createSignedUrl(a.dataset.file, 60);
+    if (signError) { messageStatusEl.textContent = 'A fájl nem nyitható meg: ' + signError.message; return; }
+    window.open(signed.signedUrl, '_blank', 'noopener');
+  }));
+  messageStreamEl.scrollTop = messageStreamEl.scrollHeight;
+}
+
+async function createOrFindConversation(studentId) {
+  const { data: memberships, error } = await supabase.from('tanulj_conversation_members')
+    .select('conversation_id').eq('user_id', studentId);
+  if (error) throw error;
+
+  // Student view: RLS intentionally lets a student see only their own membership row.
+  // So identify their already-created instructor chat by its own conversation record,
+  // rather than querying the other participant rows (which are hidden to the student).
+  if (!isAdminUser()) {
+    const ids = [...new Set((memberships || []).map(m => m.conversation_id))];
+    if (ids.length) {
+      const { data: chats, error: chatsError } = await supabase.from('tanulj_conversations')
+        .select('id,title,created_by,updated_at').in('id', ids)
+        .eq('created_by', currentUser.id)
+        .eq('title', 'Üzenet az oktatónak')
+        .order('updated_at', { ascending: false });
+      if (chatsError) throw chatsError;
+      if (chats?.length) return chats[0].id;
+    }
+  } else {
+    // Admin can inspect participants and find the existing one-to-one student thread.
+    for (const item of memberships || []) {
+      const { data: otherMembers, error: otherError } = await supabase.from('tanulj_conversation_members')
+        .select('user_id').eq('conversation_id', item.conversation_id);
+      if (otherError) throw otherError;
+      const ids = (otherMembers || []).map(m => m.user_id);
+      if (ids.includes(ADMIN_USER_ID) && ids.includes(studentId) && ids.length === 2) return item.conversation_id;
+    }
+  }
+
+  const title = isAdminUser() ? (studentSelectEl.selectedOptions[0]?.textContent || 'Tanuló') : 'Üzenet az oktatónak';
+  const { data: conversation, error: createError } = await supabase.from('tanulj_conversations')
+    .insert({ title, created_by: currentUser.id }).select('id').single();
+  if (createError) throw createError;
+  const { error: addError } = await supabase.from('tanulj_conversation_members').insert([
+    { conversation_id: conversation.id, user_id: currentUser.id },
+    { conversation_id: conversation.id, user_id: studentId }
+  ]);
+  if (addError) throw addError;
+  return conversation.id;
+}
+
+document.getElementById('startStudentChat').addEventListener('click', async () => {
+  const studentId = studentSelectEl.value;
+  if (!studentId) { messageStatusEl.textContent = 'Válassz ki egy diákot.'; return; }
+  try {
+    const id = await createOrFindConversation(studentId);
+    await openMessageConversation(id, studentSelectEl.selectedOptions[0]?.textContent || 'Diák');
+  } catch (err) { messageStatusEl.textContent = 'Beszélgetés indítása sikertelen: ' + err.message; }
+});
+
+messageComposeEl.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!activeConversationId || !currentUser) return;
+  const content = messageTextEl.value.trim();
+  const file = messageFileEl.files[0];
+  if (!content && !file) { messageStatusEl.textContent = 'Írj üzenetet vagy válassz csatolmányt.'; return; }
+  if (file && file.size > 10 * 1024 * 1024) { messageStatusEl.textContent = 'A csatolmány legfeljebb 10 MB lehet.'; return; }
+  const allowed = ['image/jpeg','image/png','image/webp','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+  if (file && !allowed.includes(file.type)) { messageStatusEl.textContent = 'Ez a fájltípus nem engedélyezett.'; return; }
+  const sendButton = document.getElementById('messageSend');
+  sendButton.disabled = true; messageStatusEl.textContent = 'Küldés…';
+  try {
+    let attachment_path = null;
+    if (file) {
+      const clean = file.name.normalize('NFKD').replace(/[^a-zA-Z0-9._-]+/g,'-') || 'csatolmany';
+      attachment_path = activeConversationId + '/' + crypto.randomUUID() + '-' + clean;
+      const { error: uploadError } = await supabase.storage.from(MESSAGE_BUCKET).upload(attachment_path, file, { contentType: file.type, upsert: false });
+      if (uploadError) throw uploadError;
+    }
+    const { error } = await supabase.from('tanulj_messages').insert({
+      conversation_id: activeConversationId, sender_id: currentUser.id, content: content || null,
+      attachment_path, attachment_name: file?.name || null, attachment_type: file?.type || null
+    });
+    if (error) throw error;
+    await supabase.from('tanulj_conversations').update({ updated_at: new Date().toISOString() }).eq('id', activeConversationId);
+    messageTextEl.value = ''; messageFileEl.value = ''; messageStatusEl.textContent = 'Elküldve!';
+    await loadConversationMessages(); await loadMessageThreads();
+  } catch (err) { messageStatusEl.textContent = 'Küldési hiba: ' + err.message; }
+  finally { sendButton.disabled = false; }
+});
+
+async function initializeMessaging(user) {
+  messagingSection.style.display = user ? 'block' : 'none';
+  if (!user) { activeConversationId = null; return; }
+  await ensureMessageProfile(user);
+  const admin = isAdminUser();
+  adminContactTools.style.display = admin ? 'block' : 'none';
+  document.getElementById('messagingIntro').textContent = admin
+    ? 'Válassz tanulót, vagy nyiss meg egy beérkezett beszélgetést.'
+    : 'Itt tudsz privát üzenetet küldeni az oktatónak.';
+  if (admin) await loadMessageProfiles();
+  else {
+    try {
+      const id = await createOrFindConversation(user.id === ADMIN_USER_ID ? user.id : ADMIN_USER_ID);
+      await openMessageConversation(id, 'Üzenet az oktatónak');
+    } catch (err) { messageStatusEl.textContent = 'A beszélgetés előkészítése sikertelen: ' + err.message; }
+  }
+  await loadMessageThreads();
+}
+
+
+supabase.auth.onAuthStateChange((_event, session) => {
+  const user = session?.user ?? null;
+  renderAuth(user);
+  setTimeout(() => { initializeMessaging(user); }, 0);
+  // Run the database admin check outside the auth callback to avoid blocking auth state changes.
+  setTimeout(() => { checkAdmin(user); }, 0);
+});
+
+const calendarParams = new URLSearchParams(window.location.search);
+if (calendarParams.get('calendar_connected') === '1') {
+  const statusEl = document.getElementById('calendarConnectStatus');
+  if (statusEl) statusEl.textContent = 'A Google Naptár csatlakoztatása sikeres.';
+  calendarParams.delete('calendar_connected');
+  const cleanUrl = window.location.pathname + (calendarParams.toString() ? '?' + calendarParams.toString() : '') + window.location.hash;
+  window.history.replaceState({}, '', cleanUrl);
+}
+
+const { data: { session } } = await supabase.auth.getSession();
+const initialUser = session?.user ?? null;
+renderAuth(initialUser);
+await checkAdmin(initialUser);
+await initializeMessaging(initialUser);
+
+modalEl.addEventListener('click', event => {
+  if (event.target.id === 'modal') closeModal();
+});
+profileModalEl.addEventListener('click', event => { if (event.target.id === 'profileModal') closeProfile(); });
+document.getElementById('profileLogout').addEventListener('click', async () => { const { error } = await supabase.auth.signOut(); if (error) document.getElementById('profileMessage').textContent = error.message; else closeProfile(); });
+</script>
+</body></html>
