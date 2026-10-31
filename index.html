@@ -261,7 +261,7 @@ function renderAuth(user) {
   }
 }
 function escapeHtml(value) {
-  return value.replace(/[&<>"']/g, char => ({'&':'&','<':'<','>':'>','"':'"',"'":'''}[char]));
+  return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 }
 
 
@@ -283,7 +283,7 @@ let activeConversationTitle = '';
 let messageConversationIds = [];
 
 function safeText(value) {
-  return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&','<':'<','>':'>','"':'"',"'":'''}[ch]));
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
 function isAdminUser() { return currentUser?.id === ADMIN_USER_ID; }
 
