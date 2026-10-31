@@ -29,14 +29,14 @@
 .announcement-admin-form{display:grid;gap:10px;margin:12px 0 20px}
 .announcement-admin-form input,.announcement-admin-form textarea{width:100%;padding:12px;border:1px solid #e5e3f1;border-radius:10px;font:inherit}
 </style></head><body>
-<header><a class="brand" href="#">Tanulj<span>+</span></a><nav><a href="#anyagok">Tananyagok</a><a href="#kurzusok">Kurzusok</a><a href="#tagsag">Előfizetés</a></nav><div id="authActions"><button class="outline" onclick="modal('Belépés')">Belépés</button> <button class="primary" onclick="modal('Regisztráció')">Regisztráció</button></div></header>
-<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons"><button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">Tananyagok felfedezése →</button><button class="outline" onclick="modal('Regisztráció')">Fiók létrehozása</button></div><p class="muted">✓ Érthető jegyzetek ✓ Rugalmas tanulás ✓ Saját tempó</p></div>
+<header><a class="brand" href="#">Tanulj<span>+</span></a><nav><a href="#anyagok">Tananyagok</a><a href="#kurzusok">Kurzusok</a><a href="#tagsag">Előfizetés</a></nav><div id="authActions"><button class="outline" onclick="window.modal('Belépés')">Belépés</button> <button class="primary" onclick="window.modal('Regisztráció')">Regisztráció</button></div></header>
+<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons"><button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">Tananyagok felfedezése →</button><button class="outline" onclick="window.modal('Regisztráció')">Fiók létrehozása</button></div><p class="muted">✓ Érthető jegyzetek ✓ Rugalmas tanulás ✓ Saját tempó</p></div>
 <div class="panel"><div class="dash"><b>Helló, Tanuló! 👋</b><p class="muted">Folytasd a tanulást, vagy fedezz fel egy új témát.</p><div class="tiles"><div class="tile">🧬<b>Biológia</b><span class="muted">Jegyzetek és kurzusok</span></div><div class="tile">⚗️<b>Kémia</b><span class="muted">Elmélet és gyakorlás</span></div></div><p class="muted" style="margin-top:20px">Tanulói felület · A megvásárolt anyagaid egy helyen</p></div></div></section>
 <section class="section" id="anyagok"><h2>Találd meg a következő témádat</h2><p class="muted">Tananyagok, amelyek segítenek megérteni — nem csak bemagolni.</p><div class="cards" id="kurzusok">
 <div class="card"><div class="cover">🧬</div><p class="muted">BIOLÓGIA · PDF JEGYZET</p><h3>Sejtbiológia érthetően</h3><p class="muted">Rendszerezett jegyzet az alapoktól a sejtszervecskék működéséig.</p><div class="cardfoot"><span class="price">1 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
 <div class="card"><div class="cover">⚗️</div><p class="muted">KÉMIA · TANANYAGCSOMAG</p><h3>Szerves kémia alapok</h3><p class="muted">Összefoglaló, példák és gyakorlófeladatok egy helyen.</p><div class="cardfoot"><span class="price">3 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
 <div class="card"><div class="cover">🎯</div><p class="muted">ÉRETTSÉGI · KOMPLETT CSOMAG</p><h3>Emelt biológia felkészítő</h3><p class="muted">Tematikus tananyagok és gyakorlás a magabiztos felkészüléshez.</p><div class="cardfoot"><span class="price">19 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div></div></section>
-<section class="section" id="tagsag"><div class="banner"><div><h2>Tanulj a saját ritmusodban!</h2><p>Egyszeri vásárlás vagy havi hozzáférés — te választasz.</p></div><button class="primary" onclick="modal('Regisztráció')">Érdekel az előfizetés →</button></div></section></main>
+<section class="section" id="tagsag"><div class="banner"><div><h2>Tanulj a saját ritmusodban!</h2><p>Egyszeri vásárlás vagy havi hozzáférés — te választasz.</p></div><button class="primary" onclick="window.modal('Regisztráció')">Érdekel az előfizetés →</button></div></section></main>
 
 
 <section class="announcements wrap" id="announcementsSection">
@@ -280,7 +280,7 @@ function renderAuth(user) {
     const firstName = user.user_metadata?.display_name || (user.email ? user.email.split('@')[0] : 'Tanuló');
     actionsEl.innerHTML = `<button class="outline" onclick="openProfile()">Szia, ${escapeHtml(firstName)} · Profil</button>`;
   } else {
-    actionsEl.innerHTML = '<button class="outline" onclick="modal(\'Belépés\')">Belépés</button> <button class="primary" onclick="modal(\'Regisztráció\')">Regisztráció</button>';
+    actionsEl.innerHTML = '<button class="outline" onclick="window.modal(\'Belépés\')">Belépés</button> <button class="primary" onclick="window.modal(\'Regisztráció\')">Regisztráció</button>';
   }
 }
 function escapeHtml(value) {
@@ -561,7 +561,8 @@ async function initializeAnnouncements(user) {
 supabase.auth.onAuthStateChange((_event, session) => {
   const user = session?.user ?? null;
   renderAuth(user);
-  setTimeout(() => { initializeMessaging(user); }, 0);\n  setTimeout(() => { initializeAnnouncements(user); }, 0);
+  setTimeout(() => { initializeMessaging(user); }, 0);
+  setTimeout(() => { initializeAnnouncements(user); }, 0);
   setTimeout(() => { checkAdmin(user); }, 0);
 });
 
