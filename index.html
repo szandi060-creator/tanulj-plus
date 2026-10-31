@@ -55,7 +55,14 @@
     </section>
   </div>
 </section>
-\n<section class="admin-section" id="adminSection"><h2>Tanulj+ adminfelület</h2><p class="muted">PDF-tananyagok feltöltése és kezelése. Csak adminfiókkal érhető el.</p>
+\n<section class="admin-section" id="adminSection"><h2>Tanulj+ adminfelület</h2>
+<div class="calendar-admin" style="padding:16px;margin:16px 0;border:1px solid #e9e7f5;border-radius:16px;background:#fbfaff">
+  <h3 style="margin:0 0 8px">Google Naptár</h3>
+  <p class="muted" style="margin:0 0 12px">Csatlakoztasd az oktatói Google Naptáradat az időpontkezeléshez.</p>
+  <button class="primary" type="button" id="connectGoogleCalendar">Google Naptár csatlakoztatása</button>
+  <p id="calendarConnectStatus" class="admin-status" role="status" aria-live="polite"></p>
+</div>
+<p class="muted">PDF-tananyagok feltöltése és kezelése. Csak adminfiókkal érhető el.</p>
 <form id="materialForm" class="admin-form">
 <div><label for="materialTitle">Tananyag címe *</label><input id="materialTitle" required maxlength="180" placeholder="Pl. Sejtbiológia – összefoglaló"></div>
 <div><label for="materialSubject">Tantárgy *</label><select id="materialSubject" required><option value="biologia">Biológia</option><option value="kemia">Kémia</option></select></div>
@@ -176,6 +183,35 @@ formEl.addEventListener('submit', async (event) => {
   }
 });
 
+
+// Google Calendar OAuth connection (admin only)
+const calendarConnectButton = document.getElementById('connectGoogleCalendar');
+const calendarConnectStatus = document.getElementById('calendarConnectStatus');
+
+calendarConnectButton?.addEventListener('click', async () => {
+  if (!currentUser) {
+    calendarConnectStatus.textContent = 'Először jelentkezz be adminfiókkal.';
+    return;
+  }
+  calendarConnectButton.disabled = true;
+  calendarConnectStatus.textContent = 'Kapcsolódás a Google Naptárhoz…';
+  try {
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!session?.access_token) throw new Error('A bejelentkezési munkamenet lejárt. Jelentkezz be újra.');
+
+    const { data, error } = await supabase.functions.invoke('google-calendar-connect', {
+      body: {},
+      headers: { Authorization: `Bearer ${session.access_token}` }
+    });
+    if (error) throw error;
+    if (!data?.url) throw new Error(data?.message || 'Nem érkezett Google-engedélyezési link.');
+    window.location.assign(data.url);
+  } catch (err) {
+    calendarConnectStatus.textContent = 'Nem sikerült elindítani a csatlakozást: ' + (err.message || 'Ismeretlen hiba');
+    calendarConnectButton.disabled = false;
+  }
+});
 
 async function checkAdmin(user) {
   adminSection.style.display = 'none';
@@ -454,6 +490,15 @@ supabase.auth.onAuthStateChange((_event, session) => {
   // Run the database admin check outside the auth callback to avoid blocking auth state changes.
   setTimeout(() => { checkAdmin(user); }, 0);
 });
+
+const calendarParams = new URLSearchParams(window.location.search);
+if (calendarParams.get('calendar_connected') === '1') {
+  const statusEl = document.getElementById('calendarConnectStatus');
+  if (statusEl) statusEl.textContent = 'A Google Naptár csatlakoztatása sikeres.';
+  calendarParams.delete('calendar_connected');
+  const cleanUrl = window.location.pathname + (calendarParams.toString() ? '?' + calendarParams.toString() : '') + window.location.hash;
+  window.history.replaceState({}, '', cleanUrl);
+}
 
 const { data: { session } } = await supabase.auth.getSession();
 const initialUser = session?.user ?? null;
