@@ -23,22 +23,12 @@
 @media(max-width:760px){.message-layout{grid-template-columns:1fr}.message-sidebar{max-height:220px;overflow:auto}.message-stream{max-height:300px}}
 </style></head><body>
 <header><a class="brand" href="#">Tanulj<span>+</span></a><nav><a href="#anyagok">Tananyagok</a><a href="#kurzusok">Kurzusok</a><a href="#tagsag">Előfizetés</a></nav><div id="authActions"><button class="outline" onclick="modal('Belépés')">Belépés</button> <button class="primary" onclick="modal('Regisztráció')">Regisztráció</button></div></header>
-<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons"><button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">Tananyagok felfedezése →</button><button class="outline" onclick="modal('Regisztráció')">Fiók létrehozása</button></div><p class="muted">✓ Érthető jegyzetek　✓ Rugalmas tanulás　✓ Saját tempó</p></div>
+<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons"><button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">Tananyagok felfedezése →</button><button class="outline" onclick="modal('Regisztráció')">Fiók létrehozása</button></div><p class="muted">✓ Érthető jegyzetek ✓ Rugalmas tanulás ✓ Saját tempó</p></div>
 <div class="panel"><div class="dash"><b>Helló, Tanuló! 👋</b><p class="muted">Folytasd a tanulást, vagy fedezz fel egy új témát.</p><div class="tiles"><div class="tile">🧬<b>Biológia</b><span class="muted">Jegyzetek és kurzusok</span></div><div class="tile">⚗️<b>Kémia</b><span class="muted">Elmélet és gyakorlás</span></div></div><p class="muted" style="margin-top:20px">Tanulói felület · A megvásárolt anyagaid egy helyen</p></div></div></section>
 <section class="section" id="anyagok"><h2>Találd meg a következő témádat</h2><p class="muted">Tananyagok, amelyek segítenek megérteni — nem csak bemagolni.</p><div class="cards" id="kurzusok">
 <div class="card"><div class="cover">🧬</div><p class="muted">BIOLÓGIA · PDF JEGYZET</p><h3>Sejtbiológia érthetően</h3><p class="muted">Rendszerezett jegyzet az alapoktól a sejtszervecskék működéséig.</p><div class="cardfoot"><span class="price">1 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
 <div class="card"><div class="cover">⚗️</div><p class="muted">KÉMIA · TANANYAGCSOMAG</p><h3>Szerves kémia alapok</h3><p class="muted">Összefoglaló, példák és gyakorlófeladatok egy helyen.</p><div class="cardfoot"><span class="price">3 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
 <div class="card"><div class="cover">🎯</div><p class="muted">ÉRETTSÉGI · KOMPLETT CSOMAG</p><h3>Emelt biológia felkészítő</h3><p class="muted">Tematikus tananyagok és gyakorlás a magabiztos felkészüléshez.</p><div class="cardfoot"><span class="price">19 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div></div></section>
-
-<section class="section" id="idopontfoglalas">
-  <div style="background:white;border:1px solid #e9e7f5;border-radius:22px;padding:26px">
-    <h2>📅 Időpontfoglalás</h2>
-    <p class="muted">Válassz egy szabad, 60 perces időpontot. A foglaláshoz be kell jelentkezned.</p>
-    <div id="bookingArea"><p class="muted">Jelentkezz be a szabad időpontok megtekintéséhez.</p></div>
-    <p id="bookingStatus" class="admin-status" role="status" aria-live="polite"></p>
-  </div>
-</section>
-
 <section class="section" id="tagsag"><div class="banner"><div><h2>Tanulj a saját ritmusodban!</h2><p>Egyszeri vásárlás vagy havi hozzáférés — te választasz.</p></div><button class="primary" onclick="modal('Regisztráció')">Érdekel az előfizetés →</button></div></section></main>
 
 <section class="messaging wrap" id="messagingSection">
@@ -65,7 +55,7 @@
     </section>
   </div>
 </section>
-\n<section class="admin-section" id="adminSection"><h2>Tanulj+ adminfelület</h2>
+<section class="admin-section" id="adminSection"><h2>Tanulj+ adminfelület</h2>
 <div class="calendar-admin" style="padding:16px;margin:16px 0;border:1px solid #e9e7f5;border-radius:16px;background:#fbfaff">
   <h3 style="margin:0 0 8px">Google Naptár</h3>
   <p class="muted" style="margin:0 0 12px">Csatlakoztasd az oktatói Google Naptáradat az időpontkezeléshez.</p>
@@ -271,7 +261,7 @@ function renderAuth(user) {
   }
 }
 function escapeHtml(value) {
-  return value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  return value.replace(/[&<>"']/g, char => ({'&':'&','<':'<','>':'>','"':'"',"'":'''}[char]));
 }
 
 
@@ -293,7 +283,7 @@ let activeConversationTitle = '';
 let messageConversationIds = [];
 
 function safeText(value) {
-  return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&','<':'<','>':'>','"':'"',"'":'''}[ch]));
 }
 function isAdminUser() { return currentUser?.id === ADMIN_USER_ID; }
 
@@ -396,9 +386,6 @@ async function createOrFindConversation(studentId) {
     .select('conversation_id').eq('user_id', studentId);
   if (error) throw error;
 
-  // Student view: RLS intentionally lets a student see only their own membership row.
-  // So identify their already-created instructor chat by its own conversation record,
-  // rather than querying the other participant rows (which are hidden to the student).
   if (!isAdminUser()) {
     const ids = [...new Set((memberships || []).map(m => m.conversation_id))];
     if (ids.length) {
@@ -411,7 +398,6 @@ async function createOrFindConversation(studentId) {
       if (chats?.length) return chats[0].id;
     }
   } else {
-    // Admin can inspect participants and find the existing one-to-one student thread.
     for (const item of memberships || []) {
       const { data: otherMembers, error: otherError } = await supabase.from('tanulj_conversation_members')
         .select('user_id').eq('conversation_id', item.conversation_id);
@@ -493,65 +479,10 @@ async function initializeMessaging(user) {
 }
 
 
-
-// ---------------- Tanulj+ időpontfoglalás ----------------
-const bookingArea = document.getElementById('bookingArea');
-const bookingStatus = document.getElementById('bookingStatus');
-async function bookingCall(payload) {
-  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-  if (sessionError) throw sessionError;
-  if (!session?.access_token) throw new Error('A foglaláshoz először jelentkezz be.');
-  const { data, error } = await supabase.functions.invoke('tanulj-booking', {
-    body: payload,
-    headers: { Authorization: `Bearer ${session.access_token}` }
-  });
-  if (error) throw error;
-  if (data?.error) throw new Error(data.error);
-  return data;
-}
-async function loadBookingSlots() {
-  if (!currentUser) {
-    bookingArea.innerHTML = '<p class="muted">A szabad időpontok megtekintéséhez lépj be a tanulói fiókodba.</p><button class="primary" onclick="modal(\\'Belépés\\')">Belépés</button>';
-    return;
-  }
-  bookingArea.innerHTML = '<p class="muted">Szabad időpontok betöltése…</p>';
-  bookingStatus.textContent = '';
-  try {
-    const result = await bookingCall({ action: 'availability' });
-    const slots = result.slots || [];
-    if (!slots.length) {
-      bookingArea.innerHTML = '<p class="muted">Jelenleg nincs elérhető időpont a következő 4 hétben.</p><button class="outline" id="reloadBookingSlots">Frissítés</button>';
-      document.getElementById('reloadBookingSlots').addEventListener('click', loadBookingSlots);
-      return;
-    }
-    bookingArea.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px">' +
-      slots.map(slot => `<div style="border:1px solid #e9e7f5;border-radius:12px;padding:13px;display:flex;justify-content:space-between;align-items:center;gap:8px"><span><strong>${safeText(slot.local)}</strong><div class="muted">60 perc</div></span><button class="primary" data-start="${safeText(slot.start)}" data-end="${safeText(slot.end)}">Foglalás</button></div>`).join('') +
-      '</div>';
-    bookingArea.querySelectorAll('button[data-start]').forEach(button => button.addEventListener('click', async () => {
-      button.disabled = true;
-      bookingStatus.textContent = 'Foglalás folyamatban…';
-      try {
-        await bookingCall({ action: 'book', start: button.dataset.start, end: button.dataset.end });
-        bookingStatus.textContent = 'Sikeres foglalás! Az időpont bekerült a Google Naptárba.';
-        await loadBookingSlots();
-      } catch (err) {
-        bookingStatus.textContent = 'Nem sikerült foglalni: ' + (err.message || 'Ismeretlen hiba');
-        button.disabled = false;
-      }
-    }));
-  } catch (err) {
-    bookingArea.innerHTML = '<p class="muted">A szabad időpontok most nem tölthetők be.</p><button class="outline" id="reloadBookingSlots">Újrapróbálom</button>';
-    bookingStatus.textContent = err.message || 'Hiba történt.';
-    document.getElementById('reloadBookingSlots').addEventListener('click', loadBookingSlots);
-  }
-}
-
 supabase.auth.onAuthStateChange((_event, session) => {
   const user = session?.user ?? null;
   renderAuth(user);
   setTimeout(() => { initializeMessaging(user); }, 0);
-  setTimeout(() => { loadBookingSlots(); }, 0);
-  // Run the database admin check outside the auth callback to avoid blocking auth state changes.
   setTimeout(() => { checkAdmin(user); }, 0);
 });
 
@@ -569,7 +500,6 @@ const initialUser = session?.user ?? null;
 renderAuth(initialUser);
 await checkAdmin(initialUser);
 await initializeMessaging(initialUser);
-await loadBookingSlots();
 
 modalEl.addEventListener('click', event => {
   if (event.target.id === 'modal') closeModal();
