@@ -30,7 +30,23 @@
 .announcement-admin-form input,.announcement-admin-form textarea{width:100%;padding:12px;border:1px solid #e5e3f1;border-radius:10px;font:inherit}
 </style></head><body>
 <header><a class="brand" href="#">Tanulj<span>+</span></a><nav><a href="#anyagok">Tananyagok</a><a href="#kurzusok">Kurzusok</a><a href="#tagsag">Előfizetés</a></nav><div id="authActions"><button class="outline" onclick="window.modal('Belépés')">Belépés</button> <button class="primary" onclick="window.modal('Regisztráció')">Regisztráció</button></div></header>
-<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons"><button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">Tananyagok felfedezése →</button><button class="outline" onclick="window.modal('Regisztráció')">Fiók létrehozása</button></div><p class="muted">✓ Érthető jegyzetek ✓ Rugalmas tanulás ✓ Saját tempó</p></div>
+<main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons">
+  <button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">
+    Tananyagok felfedezése →
+  </button>
+
+  <a href="https://tanuljplusz.onlinefoglalas.hu"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="outline"
+     style="display:inline-flex;align-items:center;justify-content:center;padding:12px 17px;border-radius:12px;font-weight:700">
+    Időpontfoglalás
+  </a>
+
+  <button class="outline" onclick="window.modal('Regisztráció')">
+    Fiók létrehozása
+  </button>
+</div>
 <div class="panel"><div class="dash"><b>Helló, Tanuló! 👋</b><p class="muted">Folytasd a tanulást, vagy fedezz fel egy új témát.</p><div class="tiles"><div class="tile">🧬<b>Biológia</b><span class="muted">Jegyzetek és kurzusok</span></div><div class="tile">⚗️<b>Kémia</b><span class="muted">Elmélet és gyakorlás</span></div></div><p class="muted" style="margin-top:20px">Tanulói felület · A megvásárolt anyagaid egy helyen</p></div></div></section>
 <section class="section" id="anyagok"><h2>Találd meg a következő témádat</h2><p class="muted">Tananyagok, amelyek segítenek megérteni — nem csak bemagolni.</p><div class="cards" id="kurzusok">
 <div class="card"><div class="cover">🧬</div><p class="muted">BIOLÓGIA · PDF JEGYZET</p><h3>Sejtbiológia érthetően</h3><p class="muted">Rendszerezett jegyzet az alapoktól a sejtszervecskék működéséig.</p><div class="cardfoot"><span class="price">1 990 Ft</span><button class="primary" onclick="alert('A vásárlás és fizetés bekötése a következő fejlesztési lépés.')">Megnézem</button></div></div>
