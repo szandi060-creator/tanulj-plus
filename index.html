@@ -29,8 +29,35 @@
 .announcement-admin-form{display:grid;gap:10px;margin:12px 0 20px}
 .announcement-admin-form input,.announcement-admin-form textarea{width:100%;padding:12px;border:1px solid #e5e3f1;border-radius:10px;font:inherit}
 </style></head><body>
-<header><a class="brand" href="#">Tanulj<span>+</span></a><nav><a href="#anyagok">Tananyagok</a><a href="#kurzusok">Kurzusok</a><a href="#tagsag">Előfizetés</a><a href="https://tanuljplusz.onlinefoglalas.hu" target="_blank" rel="noopener noreferrer" class="outline" style="display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border-radius:12px;font-weight:700">Időpontfoglalás</a></nav><div id="authActions"><button class="outline" onclick="window.modal('Belépés')">Belépés</button> <button class="primary" onclick="window.modal('Regisztráció')">Regisztráció</button></div></header>
+<header>
+  <a class="brand" href="#">Tanulj<span>+</span></a>
+
+  <nav>
+    <a href="#anyagok">Tananyagok</a>
+    <a href="#kurzusok">Kurzusok</a>
+    <a href="#tagsag">Előfizetés</a>
+    <a href="https://tanuljplusz.onlinefoglalas.hu"
+       target="_blank"
+       rel="noopener noreferrer">
+      Időpontfoglalás
+    </a>
+  </nav>
+
+  <div id="authActions">
+    <button class="outline" onclick="window.modal('Belépés')">Belépés</button>
+    <button class="primary" onclick="window.modal('Regisztráció')">Regisztráció</button>
+  </div>
+</header>
+
 <main class="wrap"><section class="hero"><div><span class="tag">BIOLÓGIA · KÉMIA · ÉRETTSÉGI</span><h1>Tudás, amivel<br><em>többre jutsz.</em></h1><p class="lead">Tanulj érthetően, haladj a saját tempódban, és készülj fel magabiztosan a biológia- és kémiaérettségire a Tanulj+ segítségével.</p><div class="buttons">
+  <button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">
+    Tananyagok felfedezése →
+  </button>
+
+  <button class="outline" onclick="window.modal('Regisztráció')">
+    Fiók létrehozása
+  </button>
+</div>
   <button class="primary" onclick="document.querySelector('#anyagok').scrollIntoView({behavior:'smooth'})">
     Tananyagok felfedezése →
   </button>
